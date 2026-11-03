@@ -8,3 +8,48 @@ body {
   margin: auto;
   padding: 1em;
 }
+
+:root {
+  --color-departures: steelblue;
+  --color-arrivals: darkorange;
+}
+
+circle,
+.legend > div {
+  --color: color-mix(
+    in oklch,
+    var(--color-departures) calc(100% * var(--departure-ratio)),
+    var(--color-arrivals)
+  );
+}
+
+circle {
+  fill: var(--color);
+  fill-opacity: 0.8;
+}
+
+.legend {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  margin-block: 1rem;
+}
+
+.legend > div {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.legend > div::before {
+  content: "";
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--color);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend-title {
+  font-weight: bold;
+}
